@@ -1,0 +1,23 @@
+title: Stretch Tracker App
+description: A desktop application that reminds users to take regular stretching breaks
+baseurl: "/StretchTracker"
+url: ""
+
+# Theme settings
+remote_theme: just-the-docs/just-the-docs
+# theme: just-the-docs  # This line is commented out as we're using remote_theme instead
+color_scheme: light
+
+# Aux links for the upper right navigation
+aux_links:
+  "View on GitHub":
+    - "//github.com/sharjeelch/MotionMint"
+
+# Enable or disable the site search
+search_enabled: true
+
+# Set a path/url to a favicon
+favicon_ico: "/assets/images/favicon.ico"
+
+# Footer content
+footer_content: "Copyright &copy; 2025 Motion Mint App. Distributed under the MIT license."

@@ -1,0 +1,23 @@
+﻿<Application x:Class="StretchTracker.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:tb="http://www.hardcodet.net/taskbar"
+             xmlns:local="clr-namespace:StretchTracker">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Alternative approach without direct icon reference to avoid parsing issues -->
+            <tb:TaskbarIcon x:Key="NotifyIcon"
+                            ToolTipText="Stretch Tracker">
+                <tb:TaskbarIcon.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Open" Click="ShowMenuItem_Click"/>
+                        <MenuItem Header="View Stats" Click="StatsMenuItem_Click"/>
+                        <MenuItem Header="Settings" Click="SettingsMenuItem_Click"/>
+                        <Separator/>
+                        <MenuItem Header="Exit" Click="ExitMenuItem_Click"/>
+                    </ContextMenu>
+                </tb:TaskbarIcon.ContextMenu>
+            </tb:TaskbarIcon>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

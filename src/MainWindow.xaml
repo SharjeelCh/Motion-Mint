@@ -1,0 +1,243 @@
+﻿<Window x:Class="StretchTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StretchTracker"
+        mc:Ignorable="d"
+        Title="Stretch Tracker" Height="580" Width="900"
+        WindowStartupLocation="CenterScreen"
+        Background="#F8F9FA"
+        FontFamily="Segoe UI">
+    <Window.Resources>
+        <!-- Modern Color Palette -->
+        <Color x:Key="PrimaryColor">#6366F1</Color>
+        <Color x:Key="PrimaryDarkColor">#4F46E5</Color>
+        <Color x:Key="AccentColor">#8B5CF6</Color>
+        <Color x:Key="BackgroundColor">#F8F9FA</Color>
+        <Color x:Key="SurfaceColor">#FFFFFF</Color>
+        <Color x:Key="TextPrimaryColor">#1F2937</Color>
+        <Color x:Key="TextSecondaryColor">#6B7280</Color>
+
+        <!-- Convert Colors to Brushes -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+        <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDarkColor}"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+        <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+        <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="24"
+                                Effect="{TemplateBinding Effect}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="15" ShadowDepth="1" 
+                                            Color="{StaticResource PrimaryColor}" 
+                                            Opacity="0.3"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Card Style -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="1" 
+                                    Color="#000000" Opacity="0.1"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Background pattern - modern gradient -->
+        <Grid>
+            <Rectangle Fill="#6366F1" Opacity="0.05">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="100"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Ellipse Width="400" Height="400" Fill="#8B5CF6" Opacity="0.05" 
+                     HorizontalAlignment="Left" VerticalAlignment="Top" 
+                     Margin="-100,-100,0,0">
+                <Ellipse.Effect>
+                    <BlurEffect Radius="50"/>
+                </Ellipse.Effect>
+            </Ellipse>
+            <Ellipse Width="300" Height="300" Fill="#6366F1" Opacity="0.05" 
+                     HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                     Margin="0,0,-50,-50">
+                <Ellipse.Effect>
+                    <BlurEffect Radius="50"/>
+                </Ellipse.Effect>
+            </Ellipse>
+        </Grid>
+
+        <Grid Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Border Width="50" Height="50" CornerRadius="25" 
+                        Background="{StaticResource PrimaryBrush}" 
+                        Margin="0,0,15,0">
+                    <TextBlock Text="S" FontSize="24" FontWeight="Bold" 
+                             Foreground="White" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Stretch Tracker" 
+                           FontSize="32" FontWeight="SemiBold" 
+                           VerticalAlignment="Center"
+                           Foreground="{StaticResource TextPrimaryBrush}"/>
+            </StackPanel>
+
+            <!-- Main Content Area -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Side: Text and Info -->
+                <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,20,0">
+                    <TextBlock Text="Stay Active" 
+                               FontSize="36" FontWeight="Bold" 
+                               Foreground="{StaticResource PrimaryBrush}"
+                               Margin="0,0,0,15"/>
+
+                    <TextBlock Text="Regular stretching can help reduce muscle tension, increase range of motion, and improve your posture."
+                               FontSize="16" TextWrapping="Wrap" 
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               Margin="0,0,0,20"/>
+
+                    <!-- Streaks Summary -->
+                    <Border Style="{StaticResource CardStyle}" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="Your Stretching Streak" 
+                                       FontSize="18" FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimaryBrush}"
+                                       Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock x:Name="StreakCount" Text="0" 
+                                           FontSize="48" FontWeight="Bold"
+                                           Foreground="{StaticResource PrimaryBrush}"
+                                           Margin="0,0,15,0"/>
+
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="days" 
+                                               FontSize="16" 
+                                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                                    <TextBlock x:Name="StreakMessage" 
+                                               Text="Great job! Keep it up." 
+                                               FontSize="14" 
+                                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Right Side: Illustration and Actions -->
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <!-- Illustration Placeholder -->
+                    <Border Style="{StaticResource CardStyle}" 
+                            Height="200" Margin="0,0,0,30"
+                            Background="{StaticResource PrimaryBrush}" 
+                            Opacity="0.1">
+                        <TextBlock Text="Stretch Illustration" 
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Center"
+                                   FontSize="20" 
+                                   Foreground="{StaticResource PrimaryBrush}"/>
+                    </Border>
+
+                    <!-- Action Buttons -->
+                    <StackPanel HorizontalAlignment="Center">
+                        <Button x:Name="StretchNowButton" Content="Stretch Now" 
+                                Style="{StaticResource ActionButton}"
+                                Click="StretchNowButton_Click"/>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="ViewStatsButton" Content="View Stats" 
+                                    Style="{StaticResource SecondaryButton}"
+                                    Click="ViewStatsButton_Click"/>
+
+                            <Button x:Name="SettingsButton" Content="Settings" 
+                                    Style="{StaticResource SecondaryButton}"
+                                    Click="SettingsButton_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Footer -->
+            <Border Grid.Row="2" Style="{StaticResource CardStyle}" 
+                    Margin="0,20,0,0">
+                <StackPanel>
+                    <TextBlock Text="Pro Tips" 
+                               FontWeight="SemiBold" 
+                               Foreground="{StaticResource PrimaryBrush}"
+                               Margin="0,0,0,5"/>
+                    <TextBlock x:Name="TipText"
+                               Text="Aim for at least 5-10 minutes of stretching at a time. Focus on major muscle groups and hold each stretch for 15-30 seconds."
+                               TextWrapping="Wrap"
+                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
