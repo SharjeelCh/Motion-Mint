@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StretchTracker"
         mc:Ignorable="d"
-        Title="Stretch Tracker" Height="580" Width="900"
+        Title="Motion Mint" Height="580" Width="900"
         WindowStartupLocation="CenterScreen"
         Background="#1E1E1E"
         FontFamily="Segoe UI">
