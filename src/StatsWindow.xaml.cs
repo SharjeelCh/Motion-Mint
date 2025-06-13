@@ -164,15 +164,15 @@ namespace StretchTracker.UI
                 var emptyText = new TextBlock
                 {
                     Text = "Complete your first stretching session to see your progress!",
-                    FontSize = 16,
+                    FontSize = 20,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     TextWrapping = TextWrapping.Wrap,
                     Foreground = new SolidColorBrush(Color.FromRgb(117, 117, 117))
                 };
 
-                Canvas.SetLeft(emptyText, 20);
-                Canvas.SetTop(emptyText, 50);
+                Canvas.SetLeft(emptyText, 40);
+                Canvas.SetTop(emptyText, 100);
                 ChartCanvas.Children.Add(emptyText);
                 return;
             }
@@ -181,11 +181,11 @@ namespace StretchTracker.UI
             var instructionText = new TextBlock
             {
                 Text = "Weekly completion rate over the last 30 days",
-                FontSize = 12,
+                FontSize = 16,
                 Foreground = new SolidColorBrush(Color.FromRgb(117, 117, 117))
             };
-            Canvas.SetLeft(instructionText, 10);
-            Canvas.SetTop(instructionText, 10);
+            Canvas.SetLeft(instructionText, 20);
+            Canvas.SetTop(instructionText, 20);
             ChartCanvas.Children.Add(instructionText);
 
             // Get today and past dates for grouping
@@ -229,27 +229,27 @@ namespace StretchTracker.UI
             double canvasHeight = ChartGrid.ActualHeight;
 
             // Ensure minimum dimensions
-            canvasWidth = Math.Max(canvasWidth, 600);
-            canvasHeight = Math.Max(canvasHeight, 200);
+            canvasWidth = Math.Max(canvasWidth, 800);
+            canvasHeight = Math.Max(canvasHeight, 400);
 
             // Set Canvas size to match Grid
             ChartCanvas.Width = canvasWidth;
             ChartCanvas.Height = canvasHeight;
 
             // Chart settings
-            double barMaxHeight = canvasHeight - 70; // Space for labels
-            double barWidth = Math.Min(70, canvasWidth / (weekGroups.Count * 2)); // Responsive bar width
+            double barMaxHeight = canvasHeight - 100; // More space for labels
+            double barWidth = Math.Min(100, canvasWidth / (weekGroups.Count * 2)); // Wider bars
             double xSpacing = canvasWidth / (weekGroups.Count + 1);
 
             // Draw axis
             var axisLine = new Line
             {
-                X1 = 40,
-                Y1 = canvasHeight - 40,
-                X2 = canvasWidth - 20,
-                Y2 = canvasHeight - 40,
+                X1 = 60,
+                Y1 = canvasHeight - 60,
+                X2 = canvasWidth - 40,
+                Y2 = canvasHeight - 60,
                 Stroke = new SolidColorBrush(Color.FromRgb(189, 189, 189)),
-                StrokeThickness = 1
+                StrokeThickness = 2
             };
             ChartCanvas.Children.Add(axisLine);
 
@@ -258,10 +258,10 @@ namespace StretchTracker.UI
             {
                 Text = "Completion %",
                 Foreground = new SolidColorBrush(Color.FromRgb(117, 117, 117)),
-                FontSize = 12
+                FontSize = 16
             };
-            Canvas.SetLeft(yAxisLabel, 10);
-            Canvas.SetTop(yAxisLabel, 10);
+            Canvas.SetLeft(yAxisLabel, 20);
+            Canvas.SetTop(yAxisLabel, 20);
             ChartCanvas.Children.Add(yAxisLabel);
 
             // Draw bars for each week
@@ -286,12 +286,12 @@ namespace StretchTracker.UI
                     Width = barWidth,
                     Height = Math.Max(barHeight, 4), // Minimum visible height
                     Fill = new SolidColorBrush(Color.FromRgb(76, 175, 80)),
-                    RadiusX = 4,
-                    RadiusY = 4
+                    RadiusX = 6,
+                    RadiusY = 6
                 };
 
                 Canvas.SetLeft(bar, xPos);
-                Canvas.SetTop(bar, canvasHeight - 40 - barHeight);
+                Canvas.SetTop(bar, canvasHeight - 60 - barHeight);
                 ChartCanvas.Children.Add(bar);
 
                 // Add fancy gradient overlay for visual appeal
@@ -308,32 +308,32 @@ namespace StretchTracker.UI
                     Width = barWidth,
                     Height = Math.Max(barHeight, 4),
                     Fill = gradient,
-                    RadiusX = 4,
-                    RadiusY = 4
+                    RadiusX = 6,
+                    RadiusY = 6
                 };
 
                 Canvas.SetLeft(overlay, xPos);
-                Canvas.SetTop(overlay, canvasHeight - 40 - barHeight);
+                Canvas.SetTop(overlay, canvasHeight - 60 - barHeight);
                 ChartCanvas.Children.Add(overlay);
 
                 // Add percentage text
                 var percentText = new TextBlock
                 {
                     Text = $"{completionPercentage:P0}",
-                    FontSize = 12,
+                    FontSize = 16,
                     FontWeight = FontWeights.SemiBold,
                     Foreground = new SolidColorBrush(Color.FromRgb(46, 125, 50))
                 };
 
-                Canvas.SetLeft(percentText, xPos + barWidth / 2 - 15);
-                Canvas.SetTop(percentText, canvasHeight - 40 - barHeight - 20);
+                Canvas.SetLeft(percentText, xPos + barWidth / 2 - 20);
+                Canvas.SetTop(percentText, canvasHeight - 60 - barHeight - 30);
                 ChartCanvas.Children.Add(percentText);
 
                 // Add x-axis label (week)
                 var weekLabelText = new TextBlock
                 {
                     Text = weekLabel,
-                    FontSize = 10,
+                    FontSize = 14,
                     TextWrapping = TextWrapping.Wrap,
                     Width = barWidth * 2,
                     TextAlignment = TextAlignment.Center,
@@ -341,7 +341,7 @@ namespace StretchTracker.UI
                 };
 
                 Canvas.SetLeft(weekLabelText, xPos + barWidth / 2 - weekLabelText.Width / 2);
-                Canvas.SetTop(weekLabelText, canvasHeight - 35);
+                Canvas.SetTop(weekLabelText, canvasHeight - 50);
                 ChartCanvas.Children.Add(weekLabelText);
             }
         }

@@ -183,11 +183,15 @@
                 <TextBlock Grid.Row="0" Text="Monthly Progress" 
                            Style="{StaticResource SectionTitle}"/>
 
-                <Viewbox Grid.Row="1" Stretch="Uniform" StretchDirection="DownOnly">
-                    <Grid x:Name="ChartGrid" MinWidth="600" MinHeight="200">
-                        <Canvas x:Name="ChartCanvas" ClipToBounds="True"/>
-                    </Grid>
-                </Viewbox>
+                <ScrollViewer Grid.Row="1" 
+                             VerticalScrollBarVisibility="Auto"
+                             HorizontalScrollBarVisibility="Auto">
+                    <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
+                        <Grid x:Name="ChartGrid" MinWidth="800" MinHeight="400">
+                            <Canvas x:Name="ChartCanvas" ClipToBounds="True"/>
+                        </Grid>
+                    </Viewbox>
+                </ScrollViewer>
             </Grid>
         </Border>
 
