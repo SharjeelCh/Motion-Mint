@@ -224,13 +224,21 @@ namespace StretchTracker.UI
                 }
             }
 
-            // Calculate dimensions
-            double canvasWidth = ChartCanvas.ActualWidth > 0 ? ChartCanvas.ActualWidth : 700;
-            double canvasHeight = ChartCanvas.ActualHeight > 0 ? ChartCanvas.ActualHeight : 200;
+            // Calculate dimensions based on ChartGrid
+            double canvasWidth = ChartGrid.ActualWidth;
+            double canvasHeight = ChartGrid.ActualHeight;
+
+            // Ensure minimum dimensions
+            canvasWidth = Math.Max(canvasWidth, 600);
+            canvasHeight = Math.Max(canvasHeight, 200);
+
+            // Set Canvas size to match Grid
+            ChartCanvas.Width = canvasWidth;
+            ChartCanvas.Height = canvasHeight;
 
             // Chart settings
             double barMaxHeight = canvasHeight - 70; // Space for labels
-            double barWidth = 70;
+            double barWidth = Math.Min(70, canvasWidth / (weekGroups.Count * 2)); // Responsive bar width
             double xSpacing = canvasWidth / (weekGroups.Count + 1);
 
             // Draw axis
@@ -327,12 +335,12 @@ namespace StretchTracker.UI
                     Text = weekLabel,
                     FontSize = 10,
                     TextWrapping = TextWrapping.Wrap,
-                    Width = 80,
+                    Width = barWidth * 2,
                     TextAlignment = TextAlignment.Center,
                     Foreground = new SolidColorBrush(Color.FromRgb(117, 117, 117))
                 };
 
-                Canvas.SetLeft(weekLabelText, xPos + barWidth / 2 - 40);
+                Canvas.SetLeft(weekLabelText, xPos + barWidth / 2 - weekLabelText.Width / 2);
                 Canvas.SetTop(weekLabelText, canvasHeight - 35);
                 ChartCanvas.Children.Add(weekLabelText);
             }
