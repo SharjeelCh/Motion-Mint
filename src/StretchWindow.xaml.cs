@@ -32,6 +32,9 @@ namespace StretchTracker.UI
         // Additional parameters to reduce sensitivity to small movements
         private int _consecutiveMotionFrames = 0;
         private readonly int _requiredConsecutiveFrames = 3;
+        private double _motionSum = 0; // Track cumulative motion
+        private readonly double _requiredMotionSum = 400000; // Increased from 300000
+        private readonly int _maxMotionFrames = 10; // Maximum frames to consider for a single stretch
 
         public StretchWindow(DatabaseManager dbManager)
         {
@@ -248,7 +251,7 @@ namespace StretchTracker.UI
                             if (_calibrationFrames >= _requiredCalibrationFrames)
                             {
                                 _isCalibrating = false; // Mark calibration as complete
-                                _motionThreshold = Math.Max(150000, _backgroundMotion * 10); // Set threshold higher
+                                _motionThreshold = Math.Max(150000, _backgroundMotion * 8); // Lowered from 150000 and reduced multiplier from 10
 
                                 await Dispatcher.InvokeAsync(() =>
                                 {
@@ -280,22 +283,43 @@ namespace StretchTracker.UI
                         // Check if motion exceeds threshold
                         bool currentFrameHasMotion = motionAmount > _motionThreshold && !_isCalibrating;
 
-                        // Track consecutive frames with motion
+                        // Track consecutive frames with motion and accumulate motion
                         if (currentFrameHasMotion)
                         {
                             _consecutiveMotionFrames++;
+                            _motionSum += motionAmount;
 
                             // Draw active stretching indicator
-                            Cv2.PutText(frame, $"Motion Detected: {_consecutiveMotionFrames}/{_requiredConsecutiveFrames}",
+                            Cv2.PutText(frame, $"Motion: {_consecutiveMotionFrames}/{_requiredConsecutiveFrames}",
                                 new Point(10, 90), HersheyFonts.HersheySimplex, 1, new Scalar(0, 0, 255), 2);
+                            Cv2.PutText(frame, $"Total Motion: {_motionSum:F0}/{_requiredMotionSum:F0}",
+                                new Point(10, 120), HersheyFonts.HersheySimplex, 1, new Scalar(0, 0, 255), 2);
                         }
                         else
                         {
-                            _consecutiveMotionFrames = 0;
+                            // Reset if we've exceeded max frames or if motion stops
+                            if (_consecutiveMotionFrames >= _maxMotionFrames)
+                            {
+                                _consecutiveMotionFrames = 0;
+                                _motionSum = 0;
+                            }
+                            else if (_consecutiveMotionFrames > 0)
+                            {
+                                // Allow a small gap in motion (1-2 frames)
+                                _consecutiveMotionFrames--;
+                            }
                         }
 
-                        // Only consider it stretching if we have enough consecutive frames with motion
-                        bool isStretching = _consecutiveMotionFrames >= _requiredConsecutiveFrames;
+                        // Only consider it stretching if we have enough consecutive frames AND enough total motion
+                        bool isStretching = _consecutiveMotionFrames >= _requiredConsecutiveFrames && 
+                                          _motionSum >= _requiredMotionSum;
+
+                        // Reset motion tracking if we've detected a stretch
+                        if (isStretching)
+                        {
+                            _consecutiveMotionFrames = 0;
+                            _motionSum = 0;
+                        }
 
                         // Visualize detection status
                         if (isStretching)
