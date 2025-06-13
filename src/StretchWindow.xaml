@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Time to Stretch!" Height="650" Width="900"
         WindowStartupLocation="CenterScreen"
-        Background="#F5F5F5"
+        Background="#1E1E1E"
         FontFamily="Segoe UI">
     <Window.Resources>
         <Style x:Key="ActionButton" TargetType="Button">
@@ -12,7 +12,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Background" Value="#007ACC"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Resources>
@@ -22,7 +22,7 @@
             </Style.Resources>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#2E7D32"/>
+                    <Setter Property="Background" Value="#005999"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -32,8 +32,8 @@
             <Setter Property="Padding" Value="20,0"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#555555"/>
-            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="Background" Value="#333333"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Resources>
@@ -43,16 +43,16 @@
             </Style.Resources>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#BDBDBD"/>
+                    <Setter Property="Background" Value="#404040"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style x:Key="ProgressBarStyle" TargetType="ProgressBar">
             <Setter Property="Height" Value="24"/>
-            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="Background" Value="#333333"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Foreground" Value="#4CAF50"/>
+            <Setter Property="Foreground" Value="#007ACC"/>
             <Style.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="12"/>
@@ -73,24 +73,24 @@
         <StackPanel Grid.Row="0" Margin="0,0,0,15">
             <TextBlock Text="Let's Move and Stretch!" 
                        FontSize="28" FontWeight="SemiBold" 
-                       Foreground="#2E7D32" 
+                       Foreground="#007ACC" 
                        HorizontalAlignment="Center"/>
             <TextBlock Text="Make big, exaggerated movements to register your stretches" 
                        FontSize="16" 
-                       Foreground="#555555" 
+                       Foreground="#B0B0B0" 
                        HorizontalAlignment="Center"
                        Margin="0,5,0,0"/>
         </StackPanel>
 
         <!-- Camera Preview -->
         <Border Grid.Row="1" 
-                Background="White" 
+                Background="#2D2D2D" 
                 CornerRadius="12" 
-                BorderBrush="#E0E0E0" 
+                BorderBrush="#404040" 
                 BorderThickness="1"
                 Margin="0,0,0,20">
             <Border.Effect>
-                <DropShadowEffect Color="#DDDDDD" Direction="270" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                <DropShadowEffect Color="#000000" Direction="270" BlurRadius="10" ShadowDepth="2" Opacity="0.3"/>
             </Border.Effect>
             <Grid>
                 <Image x:Name="WebcamPreview" Stretch="Uniform" Margin="10"/>
@@ -106,7 +106,7 @@
                                    HorizontalAlignment="Center"/>
                         <TextBlock Text="Please remain still" 
                                    FontSize="18" 
-                                   Foreground="White" 
+                                   Foreground="#B0B0B0" 
                                    HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
@@ -125,13 +125,14 @@
                            Text="Stretch progress: 0/5" 
                            FontSize="16" 
                            FontWeight="SemiBold"
+                           Foreground="#E0E0E0"
                            VerticalAlignment="Center"/>
 
                 <TextBlock Grid.Column="1" x:Name="CounterText" 
                            Text="0/5" 
                            FontSize="20" 
                            FontWeight="Bold"
-                           Foreground="#4CAF50"
+                           Foreground="#007ACC"
                            VerticalAlignment="Center"/>
             </Grid>
 
@@ -143,6 +144,7 @@
                        Margin="0,15,0,0"
                        Text="Waiting for camera..."
                        FontSize="16"
+                       Foreground="#B0B0B0"
                        HorizontalAlignment="Center"/>
         </StackPanel>
 
@@ -158,8 +160,10 @@
                         VerticalAlignment="Center">
                 <TextBlock Text="Tip: " 
                            FontWeight="Bold"
+                           Foreground="#E0E0E0"
                            VerticalAlignment="Center"/>
                 <TextBlock Text="Try neck rolls, shoulder stretches, or side bends" 
+                           Foreground="#B0B0B0"
                            VerticalAlignment="Center"/>
             </StackPanel>
 

@@ -3,19 +3,37 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Stretching Statistics" Height="650" Width="900"
         WindowStartupLocation="CenterScreen" 
-        Background="#F5F5F5"
+        Background="#1E1E1E"
         FontFamily="Segoe UI">
     <Window.Resources>
+        <!-- Modern Color Palette -->
+        <Color x:Key="PrimaryColor">#007ACC</Color>
+        <Color x:Key="PrimaryDarkColor">#005999</Color>
+        <Color x:Key="AccentColor">#0099FF</Color>
+        <Color x:Key="BackgroundColor">#1E1E1E</Color>
+        <Color x:Key="SurfaceColor">#2D2D2D</Color>
+        <Color x:Key="TextPrimaryColor">#E0E0E0</Color>
+        <Color x:Key="TextSecondaryColor">#B0B0B0</Color>
+
+        <!-- Convert Colors to Brushes -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+        <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDarkColor}"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}"/>
+        <SolidColorBrush x:Key="SurfaceBrush" Color="{StaticResource SurfaceColor}"/>
+        <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}"/>
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondaryColor}"/>
+
         <Style x:Key="StatCard" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
             <Setter Property="CornerRadius" Value="12"/>
-            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderBrush" Value="#404040"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="20"/>
             <Setter Property="Margin" Value="0,0,0,20"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="#DDDDDD" Direction="270" BlurRadius="10" ShadowDepth="2" Opacity="0.2"/>
+                    <DropShadowEffect Color="#000000" Direction="270" BlurRadius="10" ShadowDepth="2" Opacity="0.3"/>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -26,7 +44,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#4CAF50"/>
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Resources>
@@ -36,7 +54,7 @@
             </Style.Resources>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#2E7D32"/>
+                    <Setter Property="Background" Value="{StaticResource PrimaryDarkBrush}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -45,7 +63,7 @@
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Margin" Value="0,0,0,15"/>
-            <Setter Property="Foreground" Value="#2E7D32"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
         </Style>
     </Window.Resources>
 
@@ -62,7 +80,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
             <TextBlock Text="Your Stretching Journey" 
                        FontSize="28" FontWeight="SemiBold" 
-                       Foreground="#2E7D32"/>
+                       Foreground="{StaticResource PrimaryBrush}"/>
         </StackPanel>
 
         <!-- Streak Information -->
@@ -75,39 +93,39 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Current Streak -->
-                <Border Grid.Column="0" Background="#F9FFF9" CornerRadius="8" Padding="15" Margin="0,0,10,0">
+                <Border Grid.Column="0" Background="#333333" CornerRadius="8" Padding="15" Margin="0,0,10,0">
                     <StackPanel>
                         <TextBlock Text="Current Streak" 
-                                  FontSize="14" Foreground="#555555"/>
+                                  FontSize="14" Foreground="{StaticResource TextSecondaryBrush}"/>
                         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                             <TextBlock x:Name="CurrentStreakText" 
-                                      FontSize="32" FontWeight="Bold" Foreground="#4CAF50"
+                                      FontSize="32" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"
                                       Text="0" VerticalAlignment="Bottom"/>
                             <TextBlock Text=" days" 
-                                      FontSize="18" Foreground="#4CAF50" 
+                                      FontSize="18" Foreground="{StaticResource PrimaryBrush}" 
                                       VerticalAlignment="Bottom" Margin="5,0,0,2"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
 
                 <!-- Completion Rate -->
-                <Border Grid.Column="1" Background="#F9FFF9" CornerRadius="8" Padding="15" Margin="5,0">
+                <Border Grid.Column="1" Background="#333333" CornerRadius="8" Padding="15" Margin="5,0">
                     <StackPanel>
                         <TextBlock Text="Completion Rate" 
-                                  FontSize="14" Foreground="#555555"/>
+                                  FontSize="14" Foreground="{StaticResource TextSecondaryBrush}"/>
                         <TextBlock x:Name="CompletionRateText" 
-                                  FontSize="32" FontWeight="Bold" Foreground="#4CAF50"
+                                  FontSize="32" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"
                                   Text="0%" Margin="0,5,0,0"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Total Sessions -->
-                <Border Grid.Column="2" Background="#F9FFF9" CornerRadius="8" Padding="15" Margin="10,0,0,0">
+                <Border Grid.Column="2" Background="#333333" CornerRadius="8" Padding="15" Margin="10,0,0,0">
                     <StackPanel>
                         <TextBlock Text="Total Sessions" 
-                                  FontSize="14" Foreground="#555555"/>
+                                  FontSize="14" Foreground="{StaticResource TextSecondaryBrush}"/>
                         <TextBlock x:Name="TotalSessionsText" 
-                                  FontSize="32" FontWeight="Bold" Foreground="#4CAF50"
+                                  FontSize="32" FontWeight="Bold" Foreground="{StaticResource PrimaryBrush}"
                                   Text="0" Margin="0,5,0,0"/>
                     </StackPanel>
                 </Border>
@@ -136,18 +154,18 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,0,15,0">
-                            <Rectangle Width="15" Height="15" Fill="#4CAF50" RadiusX="2" RadiusY="2" Margin="0,0,5,0"/>
-                            <TextBlock Text="Completed" VerticalAlignment="Center"/>
+                            <Rectangle Width="15" Height="15" Fill="{StaticResource PrimaryBrush}" RadiusX="2" RadiusY="2" Margin="0,0,5,0"/>
+                            <TextBlock Text="Completed" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,15,0">
                             <Rectangle Width="15" Height="15" Fill="#F44336" RadiusX="2" RadiusY="2" Margin="0,0,5,0"/>
-                            <TextBlock Text="Skipped" VerticalAlignment="Center"/>
+                            <TextBlock Text="Skipped" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Column="2" Orientation="Horizontal">
-                            <Rectangle Width="15" Height="15" Fill="#EEEEEE" RadiusX="2" RadiusY="2" Margin="0,0,5,0"/>
-                            <TextBlock Text="No Session" VerticalAlignment="Center"/>
+                            <Rectangle Width="15" Height="15" Fill="#404040" RadiusX="2" RadiusY="2" Margin="0,0,5,0"/>
+                            <TextBlock Text="No Session" VerticalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>

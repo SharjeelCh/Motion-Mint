@@ -3,17 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Settings" Height="650" Width="600"
         WindowStartupLocation="CenterScreen"
-        Background="#F8F9FA"
+        Background="#1E1E1E"
         FontFamily="Segoe UI">
     <Window.Resources>
         <!-- Modern Color Palette -->
-        <Color x:Key="PrimaryColor">#6366F1</Color>
-        <Color x:Key="PrimaryDarkColor">#4F46E5</Color>
-        <Color x:Key="AccentColor">#8B5CF6</Color>
-        <Color x:Key="BackgroundColor">#F8F9FA</Color>
-        <Color x:Key="SurfaceColor">#FFFFFF</Color>
-        <Color x:Key="TextPrimaryColor">#1F2937</Color>
-        <Color x:Key="TextSecondaryColor">#6B7280</Color>
+        <Color x:Key="PrimaryColor">#007ACC</Color>
+        <Color x:Key="PrimaryDarkColor">#005999</Color>
+        <Color x:Key="AccentColor">#0099FF</Color>
+        <Color x:Key="BackgroundColor">#1E1E1E</Color>
+        <Color x:Key="SurfaceColor">#2D2D2D</Color>
+        <Color x:Key="TextPrimaryColor">#E0E0E0</Color>
+        <Color x:Key="TextSecondaryColor">#B0B0B0</Color>
 
         <!-- Convert Colors to Brushes -->
         <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
@@ -27,13 +27,13 @@
         <Style x:Key="SectionCard" TargetType="Border">
             <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
             <Setter Property="CornerRadius" Value="16"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="#404040"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="20"/>
             <Setter Property="Margin" Value="0,0,0,20"/>
             <Setter Property="Effect">
                 <Setter.Value>
-                    <DropShadowEffect Color="#000000" Direction="270" BlurRadius="20" ShadowDepth="1" Opacity="0.1"/>
+                    <DropShadowEffect Color="#000000" Direction="270" BlurRadius="20" ShadowDepth="1" Opacity="0.3"/>
                 </Setter.Value>
             </Setter>
         </Style>
